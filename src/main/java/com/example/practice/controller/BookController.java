@@ -29,7 +29,7 @@ public class BookController extends BaseController{
         return bookService.getById(id);
     }
 
-    @GetMapping("/authors")
+    @GetMapping("/book")
     public List<BookDto> getAll(
             @RequestParam(required = false, defaultValue = DEF_PARAM_PAGE) Integer page,
             @RequestParam(required = false, name = PAGE_SIZE, defaultValue = DEF_PARAM_PAGE_SIZE) Integer pageSize,
