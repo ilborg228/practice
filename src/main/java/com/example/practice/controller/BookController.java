@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class BookController extends BaseController{
 
-    private final BookService bookService;//TODO
+    private final BookService bookService;
 
     @PostMapping("/books")
     @ResponseStatus(HttpStatus.CREATED)
