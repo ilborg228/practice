@@ -4,6 +4,7 @@ import com.example.practice.dto.AuthorDto;
 import com.example.practice.dto.DtoMapper;
 import com.example.practice.entity.Author;
 import com.example.practice.exceptions.ApiException;
+import com.example.practice.exceptions.DataNotFoundResponse;
 import com.example.practice.exceptions.DataValidationResponse;
 import com.example.practice.helpers.OrderBy;
 import com.example.practice.helpers.OrderByType;
@@ -26,7 +27,7 @@ public class AuthorService extends BaseService {
     public Author add(AuthorDto author) {
         notNull(author);
         if(authorRepository
-                .getAuthorByFirstnameAndSurname(
+                .findAuthorByFirstnameAndSurname(
                         author.getFirstname(), author.getSurname())
                 .isPresent()){
             throw new ApiException(DataValidationResponse.AUTHOR_ALREADY_EXIST);
@@ -40,5 +41,13 @@ public class AuthorService extends BaseService {
         Pageable pageable = PageRequest.of(page,pageSize,sort);
         Page<Author> authors = authorRepository.findAll(pageable);
         return authors.map(DtoMapper::toAuthorDto).getContent();
+    }
+
+    public void delete(Long id) {
+        if(authorRepository.findById(id).isPresent()){
+            authorRepository.deleteById(id);
+        }else{
+            throw new ApiException(DataNotFoundResponse.AUTHOR_NOT_FOUND);
+        }
     }
 }

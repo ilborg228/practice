@@ -4,6 +4,8 @@ import com.example.practice.entity.Author;
 import com.example.practice.entity.Book;
 import com.example.practice.entity.Genre;
 
+import java.util.stream.Collectors;
+
 public class DtoMapper {
 
     public static Author toAuthorEntity(AuthorDto authorDto){
@@ -11,6 +13,11 @@ public class DtoMapper {
         author.setFirstname(author.getFirstname());
         author.setSurname(author.getSurname());
         author.setId(author.getId());
+        author.setBooks(authorDto
+                .getBooks()
+                .stream()
+                .map(DtoMapper::toBookEntity)
+                .collect(Collectors.toList()));
         return author;
     }
 
@@ -19,6 +26,11 @@ public class DtoMapper {
         authorDto.setId(authorDto.getId());
         authorDto.setFirstname(authorDto.getFirstname());
         authorDto.setSurname(authorDto.getSurname());
+        authorDto.setBooks(author
+                .getBooks()
+                .stream()
+                .map(DtoMapper::toBookDto)
+                .collect(Collectors.toList()));
         return authorDto;
     }
 
@@ -53,5 +65,29 @@ public class DtoMapper {
         genre.setId(bookDto.getGenreId());
         book.setGenre(genre);
         return book;
+    }
+
+    public static GenreDto toGenreDto(Genre genre){
+        GenreDto genreDto = new GenreDto();
+        genreDto.setId(genre.getId());
+        genreDto.setName(genre.getName());
+        genreDto.setBooks(genre
+                .getBooks()
+                .stream()
+                .map(DtoMapper::toBookDto)
+                .collect(Collectors.toList()));
+        return genreDto;
+    }
+
+    public static Genre toGenreEntity(GenreDto genreDto){
+        Genre genre = new Genre();
+        genre.setId(genreDto.getId());
+        genre.setName(genreDto.getName());
+        genre.setBooks(genreDto
+                .getBooks()
+                .stream()
+                .map(DtoMapper::toBookEntity)
+                .collect(Collectors.toList()));
+        return genre;
     }
 }

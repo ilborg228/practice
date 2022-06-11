@@ -32,4 +32,10 @@ public class AuthorController extends BaseController{
             @RequestParam(required = false, name = ORDER_BY_TYPE, defaultValue = DEF_PARAM_ORDER_BY_TYPE) OrderByType orderByType){
         return authorService.getAuthors(page, pageSize, orderBy, orderByType);
     }
+
+    @DeleteMapping("/authors/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id){
+        authorService.delete(id);
+    }
 }
