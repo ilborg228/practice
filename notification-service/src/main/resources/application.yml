@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: notification-service
+  liquibase:
+    enabled: false
+  datasource:
+    username: finley
+    password: password
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/books
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+server:
+  port: 0

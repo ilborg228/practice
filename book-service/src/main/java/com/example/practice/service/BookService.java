@@ -31,7 +31,7 @@ public class BookService extends BaseService {
         if (bookRepository.findBookByName(book.getName()).isPresent()) {
             throw new ApiException(DataValidationResponse.BOOK_ALREADY_EXIST);
         }
-
+        rabbitTemplate.convertAndSend("notificationQueue",NEW_BOOK_MESSAGE);
         return bookRepository.save(DtoMapper.toBookEntity(book));
     }
 
