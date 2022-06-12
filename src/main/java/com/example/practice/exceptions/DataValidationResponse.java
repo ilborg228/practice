@@ -9,9 +9,9 @@ public class DataValidationResponse extends AbstractResponse {
     static final int MAX_CODE = 1999;
 
     public static final DataValidationResponse GENRE_ALREADY_EXIST =
-            new DataValidationResponse(1000,"Category already exists");
+            new DataValidationResponse(1000,"Genre already exists");
     public static final DataValidationResponse BOOK_ALREADY_EXIST =
-            new DataValidationResponse(1001,"Product already exists");
+            new DataValidationResponse(1001,"Book already exists");
     public static final DataValidationResponse AUTHOR_ALREADY_EXIST =
             new DataValidationResponse(1002,"Author already exists");
     public static final DataValidationResponse INVALID_REQUEST =

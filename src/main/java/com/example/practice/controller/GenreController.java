@@ -15,7 +15,7 @@ public class GenreController extends BaseController{
 
     @PostMapping("/genres")
     @ResponseStatus(HttpStatus.CREATED)
-    public Genre add(GenreDto genre) {
+    public Genre add(@RequestBody GenreDto genre) {
         return genreService.add(genre);
     }
 

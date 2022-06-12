@@ -29,11 +29,11 @@ public class BookController extends BaseController{
         return bookService.getById(id);
     }
 
-    @GetMapping("/book")
+    @GetMapping("/books")
     public List<BookDto> getAll(
             @RequestParam(required = false, defaultValue = DEF_PARAM_PAGE) Integer page,
             @RequestParam(required = false, name = PAGE_SIZE, defaultValue = DEF_PARAM_PAGE_SIZE) Integer pageSize,
-            @RequestParam(required = false, name = ORDER_BY) OrderBy orderBy,
+            @RequestParam(required = false, name = ORDER_BY, defaultValue = DEF_PARAM_ORDER_BY) OrderBy orderBy,
             @RequestParam(required = false, name = ORDER_BY_TYPE, defaultValue = DEF_PARAM_ORDER_BY_TYPE) OrderByType orderByType){
         return bookService.getAll(page, pageSize, orderBy, orderByType);
     }

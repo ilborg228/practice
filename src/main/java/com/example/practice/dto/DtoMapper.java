@@ -78,11 +78,6 @@ public class DtoMapper {
         Genre genre = new Genre();
         genre.setId(genreDto.getId());
         genre.setName(genreDto.getName());
-        genre.setBooks(genreDto
-                .getBooks()
-                .stream()
-                .map(DtoMapper::toBookEntity)
-                .collect(Collectors.toList()));
         return genre;
     }
 }

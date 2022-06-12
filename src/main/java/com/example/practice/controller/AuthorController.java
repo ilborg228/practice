@@ -28,7 +28,7 @@ public class AuthorController extends BaseController{
     public List<AuthorDto> get(
             @RequestParam(required = false, defaultValue = DEF_PARAM_PAGE) Integer page,
             @RequestParam(required = false, name = PAGE_SIZE, defaultValue = DEF_PARAM_PAGE_SIZE) Integer pageSize,
-            @RequestParam(required = false, name = ORDER_BY) OrderBy orderBy,
+            @RequestParam(required = false, name = ORDER_BY, defaultValue = DEF_PARAM_ORDER_BY) OrderBy orderBy,
             @RequestParam(required = false, name = ORDER_BY_TYPE, defaultValue = DEF_PARAM_ORDER_BY_TYPE) OrderByType orderByType){
         return authorService.getAuthors(page, pageSize, orderBy, orderByType);
     }

@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class GenreService extends BaseService{
 
-    private GenreRepository genreRepository;
+    private final GenreRepository genreRepository;
 
     public Genre add(GenreDto genre) {
         notNull(genre);
