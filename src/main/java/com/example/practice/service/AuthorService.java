@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -26,9 +27,12 @@ public class AuthorService extends BaseService {
 
     public Author add(AuthorDto author) {
         notNull(author);
+        if(!StringUtils.hasText(author.getFirstname()) ||!StringUtils.hasText(author.getLastname())){
+            throw new ApiException(DataValidationResponse.INVALID_REQUEST);
+        }
         if(authorRepository
-                .findAuthorByFirstnameAndSurname(
-                        author.getFirstname(), author.getSurname())
+                .findAuthorByFirstnameAndLastname(
+                        author.getFirstname(), author.getLastname())
                 .isPresent()){
             throw new ApiException(DataValidationResponse.AUTHOR_ALREADY_EXIST);
         }

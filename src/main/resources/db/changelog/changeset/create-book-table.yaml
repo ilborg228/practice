@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-book
+      author: ilia
+      changes:
+        - createTable:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: price
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: author_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: authorFK
+                    referencedTableName: authors
+                    referencedColumnNames: id
+              - column:
+                  name: genre_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: genreFK
+                    referencedTableName: genres
+                    referencedColumnNames: id

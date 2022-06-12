@@ -1,7 +1,5 @@
 package com.example.practice.dto;
 
-import com.example.practice.entity.Book;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -10,6 +8,6 @@ import java.util.List;
 public class AuthorDto {
     private Long id;
     private String firstname;
-    private String surname;
+    private String lastname;
     private List<BookDto> books;
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "authors")
 public class Author {
 
     @Id
@@ -14,7 +15,7 @@ public class Author {
     private Long id;
 
     private String firstname;
-    private String surname;
+    private String lastname;
 
     @OneToMany(mappedBy = "author",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Book> books;
