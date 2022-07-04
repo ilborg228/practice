@@ -11,10 +11,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitConfiguration {
-    @Bean
-    public ConnectionFactory connectionFactory(){
-        return new CachingConnectionFactory("localhost");
-    }
 
     @Bean
     public AmqpAdmin amqpAdmin(ConnectionFactory connectionFactory){

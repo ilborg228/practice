@@ -23,7 +23,7 @@ public class GenreService extends BaseService{
         if(genreRepository.findGenreByName(genre.getName()).isPresent()){
             throw new ApiException(DataValidationResponse.GENRE_ALREADY_EXIST);
         }
-
+        rabbitTemplate.convertAndSend("notificationQueue",NEW_GENRE_MESSAGE);
         return genreRepository.save(DtoMapper.toGenreEntity(genre));
     }
 

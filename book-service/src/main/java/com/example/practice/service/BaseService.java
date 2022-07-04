@@ -14,6 +14,7 @@ public class BaseService {
     protected ObjectMapper jsonMapper;
 
     public static final String NEW_BOOK_MESSAGE = "New book was created";
+    public static final String NEW_GENRE_MESSAGE = "New genre was created";
 
     protected void notNull(Object o) {
         if(o == null)
