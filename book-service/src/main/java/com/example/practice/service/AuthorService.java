@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,12 +28,12 @@ public class AuthorService extends BaseService {
 
     public Author add(AuthorDto author) {
         notNull(author);
-        if(!StringUtils.hasText(author.getFirstname()) ||!StringUtils.hasText(author.getLastname())){
+        if(!StringUtils.hasText(author.getFirstName()) ||!StringUtils.hasText(author.getLastName())){
             throw new ApiException(DataValidationResponse.INVALID_REQUEST);
         }
         if(authorRepository
-                .findAuthorByFirstnameAndLastname(
-                        author.getFirstname(), author.getLastname())
+                .findAuthorByFirstNameAndLastName(
+                        author.getFirstName(), author.getLastName())
                 .isPresent()){
             throw new ApiException(DataValidationResponse.AUTHOR_ALREADY_EXIST);
         }
@@ -53,5 +54,16 @@ public class AuthorService extends BaseService {
         }else{
             throw new ApiException(DataNotFoundResponse.AUTHOR_NOT_FOUND);
         }
+    }
+
+    public void update(Long id, AuthorDto req) {
+        Optional<Author> byId = authorRepository.findById(id);
+        if(byId.isEmpty()){
+            throw new ApiException(DataNotFoundResponse.AUTHOR_NOT_FOUND);
+        }
+        Author author = byId.get();
+        author.setFirstName(req.getFirstName());
+        author.setLastName(req.getLastName());
+        authorRepository.save(author);
     }
 }

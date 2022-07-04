@@ -58,4 +58,16 @@ public class BookService extends BaseService {
             throw new ApiException(DataNotFoundResponse.AUTHOR_NOT_FOUND);
         }
     }
+
+    public void update(Long id, BookDto req) {
+        Optional<Book> byId = bookRepository.findById(id);
+        if (byId.isEmpty()) {
+            throw new ApiException(DataNotFoundResponse.BOOK_NOT_FOUND);
+        }
+        Book book = byId.get();
+        book.setPrice(req.getPrice());
+        book.setDescription(req.getDescription());
+        book.setName(req.getName());
+        bookRepository.save(book);
+    }
 }

@@ -23,4 +23,8 @@ public class GenreController extends BaseController{
     public GenreDto getById(@PathVariable Long id){
         return genreService.getById(id);
     }
+
+    @PutMapping("genres/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable Long id,@RequestBody GenreDto req){genreService.update(id,req);}
 }

@@ -1,6 +1,7 @@
 package com.example.practice.controller;
 
 import com.example.practice.dto.AuthorDto;
+import com.example.practice.dto.BookDto;
 import com.example.practice.entity.Author;
 import com.example.practice.helpers.OrderBy;
 import com.example.practice.helpers.OrderByType;
@@ -37,5 +38,11 @@ public class AuthorController extends BaseController{
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id){
         authorService.delete(id);
+    }
+
+    @PutMapping("/authors/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable Long id, @RequestBody AuthorDto req){
+        authorService.update(id,req);
     }
 }

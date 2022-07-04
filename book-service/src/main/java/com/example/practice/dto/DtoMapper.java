@@ -10,8 +10,8 @@ public class DtoMapper {
 
     public static Author toAuthorEntity(AuthorDto authorDto){
         Author author = new Author();
-        author.setFirstname(authorDto.getFirstname());
-        author.setLastname(authorDto.getLastname());
+        author.setFirstName(authorDto.getFirstName());
+        author.setLastName(authorDto.getLastName());
         author.setId(authorDto.getId());
         return author;
     }
@@ -19,8 +19,8 @@ public class DtoMapper {
     public static AuthorDto toAuthorDto(Author author) {
         AuthorDto authorDto = new AuthorDto();
         authorDto.setId(authorDto.getId());
-        authorDto.setFirstname(authorDto.getFirstname());
-        authorDto.setLastname(authorDto.getLastname());
+        authorDto.setFirstName(authorDto.getFirstName());
+        authorDto.setLastName(authorDto.getLastName());
         authorDto.setBooks(author
                 .getBooks()
                 .stream()
@@ -37,8 +37,8 @@ public class DtoMapper {
         bookDto.setPrice(book.getPrice());
 
         bookDto.setAuthorId(book.getAuthor().getId());
-        bookDto.setAuthorFirstname(book.getAuthor().getFirstname());
-        bookDto.setAuthorSurname(book.getAuthor().getLastname());
+        bookDto.setAuthorFirstname(book.getAuthor().getFirstName());
+        bookDto.setAuthorSurname(book.getAuthor().getLastName());
 
         bookDto.setGenreId(book.getGenre().getId());
         bookDto.setGenreName(book.getGenre().getName());

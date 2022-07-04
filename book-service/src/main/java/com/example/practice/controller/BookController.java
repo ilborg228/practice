@@ -43,4 +43,10 @@ public class BookController extends BaseController{
     public void delete(@PathVariable Long id){
         bookService.delete(id);
     }
+
+    @PutMapping("/books/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable Long id, @RequestBody BookDto req){
+        bookService.update(id,req);
+    }
 }

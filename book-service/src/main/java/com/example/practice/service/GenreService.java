@@ -34,4 +34,14 @@ public class GenreService extends BaseService{
         }
         return DtoMapper.toGenreDto(byId.get());
     }
+
+    public void update(Long id, GenreDto req) {
+        Optional<Genre> byId = genreRepository.findById(id);
+        if(byId.isEmpty()){
+            throw new ApiException(DataNotFoundResponse.GENRE_NOT_FOUND);
+        }
+        Genre genre = byId.get();
+        genre.setName(req.getName());
+        genreRepository.save(genre);
+    }
 }
