@@ -62,8 +62,8 @@ public class AuthorService extends BaseService {
             throw new ApiException(DataNotFoundResponse.AUTHOR_NOT_FOUND);
         }
         Author author = byId.get();
-        author.setFirstName(req.getFirstName());
-        author.setLastName(req.getLastName());
+        author.setFirstName(req.getFirstName() != null ? req.getFirstName() : author.getFirstName());
+        author.setLastName(req.getLastName() != null ? req.getLastName() : author.getLastName());
         authorRepository.save(author);
     }
 }

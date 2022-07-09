@@ -65,9 +65,9 @@ public class BookService extends BaseService {
             throw new ApiException(DataNotFoundResponse.BOOK_NOT_FOUND);
         }
         Book book = byId.get();
-        book.setPrice(req.getPrice());
-        book.setDescription(req.getDescription());
-        book.setName(req.getName());
+        book.setPrice(req.getPrice() != null ? req.getPrice() : book.getPrice());
+        book.setDescription(req.getDescription() != null ? req.getDescription() : book.getDescription());
+        book.setName(req.getName() != null ? req.getName() : book.getName());
         bookRepository.save(book);
     }
 }
